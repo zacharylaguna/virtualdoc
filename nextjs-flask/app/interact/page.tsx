@@ -55,6 +55,7 @@ export default function MicrophoneComponent() {
 
   // Function to stop recording
   const stopRecording = () => {
+    setIsRecording(false);
     if (recognitionRef.current) {
       // Stop the speech recognition and mark recording as complete
       recognitionRef.current.stop();
@@ -64,7 +65,6 @@ export default function MicrophoneComponent() {
 
   // Toggle recording state and manage recording actions
   const handleToggleRecording = () => {
-    setIsRecording(!isRecording);
     if (!isRecording) {
       startRecording();
     } else {
@@ -75,6 +75,7 @@ export default function MicrophoneComponent() {
   //JSON.stringify({ transcript }),
   // Function to send transcript to backend
   const sendTranscriptToBackend = async () => {
+    stopRecording();
     try {
       const response = await fetch("/api/interview/send_message", {
         method: "POST",
