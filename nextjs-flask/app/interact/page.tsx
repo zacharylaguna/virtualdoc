@@ -84,7 +84,7 @@ export default function MicrophoneComponent() {
         body: JSON.stringify({ transcript }),
       });
       const data = await response.json();
-      setResponseMessage(data.message); // Assuming your Flask API returns a JSON object with a 'message' field
+      setResponseMessage(data.message); // Assuming Flask API returns a JSON object with a 'message' field
     } catch (error) {
       console.error("Error sending transcript to backend:", error);
     }
@@ -112,24 +112,29 @@ export default function MicrophoneComponent() {
               )}
             </div>
 
-            {transcript && (
-              <div className="border rounded-md p-2 h-fullm mt-4">
-                <p className="mb-0">{transcript}</p>
-              </div>
-            )}
+            <div className="flex flex-col items-end w-full">
+              {transcript && (
+                <div className="border rounded-md p-2 bg-blue-400 my-4 w-1/2 self-end">
+                  <p className="mb-0 text-white">{transcript}</p>
+                </div>
+              )}
 
-            {responseMessage && (
-              <div className="mt-4">
-                <p>{responseMessage}</p>
-              </div>
-            )}
+              {responseMessage && (
+                <div className="border rounded-md p-2 bg-gray-300 my-4 w-1/2 self-start">
+                  <p>{responseMessage}</p>
+                </div>
+              )}
+            </div>
 
-            <button
-              onClick={sendTranscriptToBackend}
-              className="mt-4 bg-green-400 hover:bg-green-500 rounded-full px-4 py-2 focus:outline-none"
-            >
-              Send Transcript
-            </button>
+            <div className="flex justify-center">
+              <button
+                onClick={sendTranscriptToBackend}
+                className="mt-4 bg-green-400 hover:bg-green-500 rounded-full px-4 py-2 focus:outline-none"
+              >
+                Send Transcript
+              </button>
+            </div>
+
 
           </div>
         )}
