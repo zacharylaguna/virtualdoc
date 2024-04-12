@@ -18,6 +18,8 @@ export default function MicrophoneComponent() {
   const [transcript, setTranscript] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
 
+  const [conversation, setConversation] = useState<string[]>([]); // useState([]); // Store conversation messages
+
 
   // Reference to store the SpeechRecognition instance
   const recognitionRef = useRef<any>(null);
@@ -75,7 +77,9 @@ export default function MicrophoneComponent() {
   //JSON.stringify({ transcript }),
   // Function to send transcript to backend
   const sendTranscriptToBackend = async () => {
-    stopRecording();
+    if (isRecording){
+      stopRecording();
+    }
     try {
       const response = await fetch("/api/interview/send_message", {
         method: "POST",
@@ -86,6 +90,8 @@ export default function MicrophoneComponent() {
       });
       const data = await response.json();
       setResponseMessage(data.message); // Assuming Flask API returns a JSON object with a 'message' field
+      // Add response message to history
+      setConversation([...conversation, transcript, data.message]);
     } catch (error) {
       console.error("Error sending transcript to backend:", error);
     }
@@ -114,15 +120,25 @@ export default function MicrophoneComponent() {
             </div>
 
             <div className="flex flex-col items-end w-full">
-              {transcript && (
-                <div className="border rounded-md p-2 bg-blue-400 my-4 w-1/2 self-end">
-                  <p className="mb-0 text-white">{transcript}</p>
+              {conversation.map((message, index) => (
+                <div
+                  key={`message-${index}`}
+                  className={
+                    index % 2 === 1
+                      ? "border rounded-md p-2 bg-gray-300 my-4 w-1/2 self-start"
+                      : "border rounded-md p-2 bg-blue-400 my-4 w-1/2 self-end"
+                  }
+                >
+                  <p className={index % 2 === 1 ? "" : "mb-0 text-white"}>{message}</p>
                 </div>
-              )}
+              ))}
+            </div>
 
-              {responseMessage && (
-                <div className="border rounded-md p-2 bg-gray-300 my-4 w-1/2 self-start">
-                  <p>{responseMessage}</p>
+
+            <div className="flex justify-center">
+              {transcript && (
+                <div className="border rounded-md p-2 my-4">
+                  <p className="mb-0">{transcript}</p>
                 </div>
               )}
             </div>
@@ -176,5 +192,6 @@ export default function MicrophoneComponent() {
         </div>
       </div>
     </div>
+    
   );
 }
