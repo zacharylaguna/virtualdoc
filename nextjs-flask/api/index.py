@@ -5,6 +5,6 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/api/interview/send_message")
+@app.route("/api/interview/send_message", methods=["POST"])
 def interview():
-    return "<p>this is a response</p>"
+    return {'message' : "this is a response"}

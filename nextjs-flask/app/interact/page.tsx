@@ -16,6 +16,8 @@ export default function MicrophoneComponent() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordingComplete, setRecordingComplete] = useState(false);
   const [transcript, setTranscript] = useState("");
+  const [responseMessage, setResponseMessage] = useState("");
+
 
   // Reference to store the SpeechRecognition instance
   const recognitionRef = useRef<any>(null);
@@ -70,6 +72,24 @@ export default function MicrophoneComponent() {
     }
   };
 
+  //JSON.stringify({ transcript }),
+  // Function to send transcript to backend
+  const sendTranscriptToBackend = async () => {
+    try {
+      const response = await fetch("/api/interview/send_message", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ transcript }),
+      });
+      const data = await response.json();
+      setResponseMessage(data.message); // Assuming your Flask API returns a JSON object with a 'message' field
+    } catch (error) {
+      console.error("Error sending transcript to backend:", error);
+    }
+  };
+
   // Render the microphone component with appropriate UI based on recording state
   return (
     <div className="flex items-center justify-center h-screen w-full">
@@ -97,6 +117,20 @@ export default function MicrophoneComponent() {
                 <p className="mb-0">{transcript}</p>
               </div>
             )}
+
+            {responseMessage && (
+              <div className="mt-4">
+                <p>{responseMessage}</p>
+              </div>
+            )}
+
+            <button
+              onClick={sendTranscriptToBackend}
+              className="mt-4 bg-green-400 hover:bg-green-500 rounded-full px-4 py-2 focus:outline-none"
+            >
+              Send Transcript
+            </button>
+
           </div>
         )}
 
