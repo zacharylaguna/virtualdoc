@@ -104,12 +104,24 @@ export default function MicrophoneComponent() {
     }
   };
 
+
+  // code to scroll chat to the bottom
+  const chatContainerRef = useRef<HTMLDivElement | null>(null);
+  const scrollToBottom = () => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  };
+  useEffect(() => {
+    scrollToBottom(); // Scroll to the bottom whenever `conversation` changes
+  }, [conversation]); // Dependency array containing `conversation`
+
   // Render the microphone component with appropriate UI based on recording state
   return (
     <div className="flex items-center justify-center h-screen w-full">
       <div className="w-full">
         {(isRecording || transcript) && (
-          <div className="w-1/4 m-auto rounded-md border p-4 bg-white">
+          <div className="w-1/2 m-auto rounded-md border p-4 bg-white">
             <div className="flex-1 flex w-full justify-between">
               <div className="space-y-1">
                 <p className="text-sm font-medium leading-none">
@@ -126,7 +138,9 @@ export default function MicrophoneComponent() {
               )}
             </div>
 
-            <div className="flex flex-col items-end w-full">
+            <div className="flex flex-col w-full h-96 overflow-y-auto p-4" // do i need items-end?
+            ref={chatContainerRef} // Reference to the scrollable container
+            >
               {conversation.map((message, index) => (
                 <div
                   key={`message-${index}`}
