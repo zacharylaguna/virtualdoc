@@ -27,3 +27,9 @@ npm install
 # add Werkzeug==2.2.2
 read -p "Enter Werkzeug==2.2.2 into the following file. Press enter to continue..."
 vi ~/virtualdoc/nextjs-flask/requirements.txt
+
+# just for marisa-trie (when installing pip install spacy)
+sudo apt-get install build-essential libssl-dev libffi-dev python3-dev
+
+# spacy package
+python3 -m spacy download en_core_web_sm
