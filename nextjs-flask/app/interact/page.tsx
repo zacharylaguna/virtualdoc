@@ -81,12 +81,19 @@ export default function MicrophoneComponent() {
       stopRecording();
     }
     try {
+      const evenItems = conversation.filter((_, index) => index % 2 === 0); // even items are user chats
+      console.log('Even items:', evenItems); // This will contain items at 0, 2, ...
+      const evenItemsCombined = evenItems.join(' ');
+      const transcriptHistory = evenItemsCombined + ' ' + transcript
+      console.log('transcriptHistory:', transcriptHistory); // This will contain all user chats including current
+
+
       const response = await fetch("/api/interview/send_message", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ transcript }),
+        body: JSON.stringify({ transcriptHistory }),
       });
       const data = await response.json();
       setResponseMessage(data.message); // Assuming Flask API returns a JSON object with a 'message' field

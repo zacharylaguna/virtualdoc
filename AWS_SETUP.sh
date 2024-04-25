@@ -32,4 +32,14 @@ vi ~/virtualdoc/nextjs-flask/requirements.txt
 sudo apt-get install build-essential libssl-dev libffi-dev python3-dev
 
 # spacy package
-python3 -m spacy download en_core_web_sm
+# python3 -m spacy download en_core_web_sm
+
+# add bert model and data to the nextjs-flask/api/ folder
+# DiseaseAndSymptoms.csv
+# DiseasePrecaution.csv
+# bert_finetuned.pth
+# bert_training_data.xlsx
+# index.py
+# processed_data.csv
+
+

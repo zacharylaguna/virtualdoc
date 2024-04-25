@@ -34,3 +34,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 __pycache__
+
+
+# IGNORE ML MODEL; GET THIS FROM EXTERNAL STORAGE
+*.csv
+*.xlsx
+*.pth

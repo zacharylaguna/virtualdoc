@@ -1,3 +1,13 @@
 numpy==1.24.3
 Flask==2.2.2
 Werkzeug==2.2.2
+torch
+transformers
+scikit-learn
+pandas
+numpy
+tqdm
+scipy
+openpyxl
+spacy
+deepmultilingualpunctuation
