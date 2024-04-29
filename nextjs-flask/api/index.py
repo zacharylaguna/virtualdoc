@@ -213,9 +213,18 @@ def final_input(user_inputs):
 
   # Find the most frequent disease
   diagnosis = count.most_common(1)[0][0]
-  diagnosis_text = "Final Diagnosis: " + str(diagnosis) + ". To alleviate your symptoms, we recommend: " + str(precautions_dict[diagnosis])
 
-  print(f"Final Diagnosis: {diagnosis}. To alleviate your symptoms, we recommend:{precautions_dict[diagnosis]} ")
+  # three print statement variations
+  statement_1 = f"Based on our findings, the diagnosis is {diagnosis}. To help manage your symptoms, we suggest you consider the following recommendations: {', '.join(precautions_dict[diagnosis])}. Please provide further details about your condition."
+  statement_2 = f"After reviewing your case, we've determined that you have {diagnosis}. To help you feel better, we recommend that you: {', '.join(precautions_dict[diagnosis])}. Please provide further details about your condition."
+  statement_3 = f"Our diagnosis indicates that you have {diagnosis}. To help alleviate your symptoms, we suggest you try the following: {', '.join(precautions_dict[diagnosis])}. Please provide further details about your condition."
+  # List of the statements
+  statements = [statement_1, statement_2, statement_3]
+  # Randomly select and print one statement
+  diagnosis_text = random.choice(statements)
+
+#   diagnosis_text = "Final Diagnosis: " + str(diagnosis) + ". To alleviate your symptoms, we recommend: " + str(precautions_dict[diagnosis])
+  print(diagnosis_text)
 
   return diagnosis_text
 

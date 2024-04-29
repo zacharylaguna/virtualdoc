@@ -2,6 +2,7 @@
 
 // Import necessary modules and components
 import { useEffect, useState, useRef } from "react";
+import Typewriter from './Typewriter';
 
 // Declare a global interface to add the webkitSpeechRecognition property to the Window object
 declare global {
@@ -150,7 +151,14 @@ export default function MicrophoneComponent() {
                       : "border rounded-md p-2 bg-blue-400 my-4 w-1/2 self-end"
                   }
                 >
-                  <p className={index % 2 === 1 ? "" : "mb-0 text-white"}>{message}</p>
+                  {index === conversation.length - 1 ? (
+                    // Apply typewriter effect to the last message
+                    <p className={index % 2 === 1 ? '' : 'mb-0 text-white'}>
+                      <Typewriter text={message} />
+                    </p>
+                  ) : (
+                    <p className={index % 2 === 1 ? '' : 'mb-0 text-white'}>{message}</p>
+                  )}
                 </div>
               ))}
             </div>
