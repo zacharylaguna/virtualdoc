@@ -228,24 +228,20 @@ def final_input(user_inputs):
 
   return diagnosis_text
 
-user_inputs = ["I've headache and feel irritation", "I've acidity but still feel hungry every time",
-               "Got blurred vision and disturbances in vision", "I've pain in neck muscles and I feel depressed everytime"]
 
-final_input(user_inputs)
+# UNCOMMENT TO TEST
+# user_inputs = ["I've headache and feel irritation", "I've acidity but still feel hungry every time",
+#                "Got blurred vision and disturbances in vision", "I've pain in neck muscles and I feel depressed everytime"]
+# final_input(user_inputs)
 
-
-
-puncmodel = PuncModel()
-text = "I've headache and feel irritation I've acidity but still feel hungry every time Got blurred vision and disturbances in vision I've pain in neck muscles and I feel depressed everytime"
-print('text: ',  text)
-result = str(puncmodel.restore_punctuation(text))
-print('punctuated: ',  result, type(result))
-
-splitted = result.split('.')
-splitted = [s.strip() for s in splitted if s.strip()]
-
-print('splitted: ', splitted, type(splitted))
-
-final_input(splitted)
+# puncmodel = PuncModel()
+# text = "I've headache and feel irritation I've acidity but still feel hungry every time Got blurred vision and disturbances in vision I've pain in neck muscles and I feel depressed everytime"
+# print('text: ',  text)
+# result = str(puncmodel.restore_punctuation(text))
+# print('punctuated: ',  result, type(result))
+# splitted = result.split('.')
+# splitted = [s.strip() for s in splitted if s.strip()]
+# print('splitted: ', splitted, type(splitted))
+# final_input(splitted)
 
 print ('====== FLASK SETUP FINISHED ======')
