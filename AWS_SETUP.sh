@@ -42,4 +42,5 @@ sudo apt-get install build-essential libssl-dev libffi-dev python3-dev
 # index.py
 # processed_data.csv
 
-
+cp run-virtualdoc.sh /var/lib/cloud/scripts/per-boot/run-virtualdoc.sh
+sudo chmod 777 /var/lib/cloud/scripts/per-boot/run-virtualdoc.sh
