@@ -28,7 +28,7 @@
     line-height: 20px;
   }
   
-  h1 {
+  .title {
     color: #2d3338;
     letter-spacing: 0;
     text-shadow: none;
@@ -88,7 +88,7 @@
     line-height: 23px;
   }
   
-  .button {
+  .homepage-button {
     float: none;
     color: #fff;
     text-align: center;
@@ -111,11 +111,11 @@
     position: static;
   }
   
-  .button:hover {
+  .homepage-button:hover {
     background-color: #22a88d;
   }
   
-  .button:active {
+  .homepage-button:active {
     background-color: #209e85;
     box-shadow: inset 0 4px 12px -4px rgba(0, 0, 0, .29);
   }

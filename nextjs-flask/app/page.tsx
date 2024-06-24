@@ -21,9 +21,9 @@ export default function Home() {
       </div>
       <div className="header-section">
         <div className="container w-container">
-          <h1>VirtualDoc</h1>
+          <h1 className="title">VirtualDoc</h1>
           <p className="subtitle">Tell us your symptoms and receive solutions instantly. Get diagnosed today!</p>
-          <a href="interact" className="button w-button">Start Chat</a>
+          <a href="interact" className="homepage-button">Start Chat</a>
           <div className="image-crop"><img src="images/360_F_552695735_INapeIqxVtUtmGRbrbX8KpNafdJJ65uh-removebg-preview.png" sizes="(max-width: 479px) 96vw, (max-width: 590px) 87vw, 514px" srcSet="images/360_F_552695735_INapeIqxVtUtmGRbrbX8KpNafdJJ65uh-removebg-preview-p-500.png 500w, images/360_F_552695735_INapeIqxVtUtmGRbrbX8KpNafdJJ65uh-removebg-preview.png 514w" alt="" /></div>
         </div>
       </div>
